@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - OxySmart</title>
+    <link rel="stylesheet" href="../static/css/login.css" />
+    <link rel="stylesheet" href="../static/css/style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <h1>Welcome Back to OxySmart</h1>
+      <p>Your personalized health dashboard awaits.</p>
+    </header>
+    <nav>
+      <ul id="public-nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="/signup">Sign Up</a></li>
+      </ul>
+    </nav>
+
+    <section id="login">
+      <div class="login-container">
+        <h2>Login</h2>
+        <form id="login-form">
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Enter your password"
+              required
+            />
+          </div>
+          <button type="submit" class="login-button">Login</button>
+        </form>
+      </div>
+    </section>
+
+    <script src="../static/js/login.js"></script>
+  </body>
+</html>

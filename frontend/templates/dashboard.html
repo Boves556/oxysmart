@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - OxySmart</title>
+    <link rel="stylesheet" href="../static/css/dashboard.css" />
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>Welcome to Your Dashboard</h1>
+        <p>Your personalized access to health and hiking info.</p>
+    </header>
+
+    <div id="dashboard-container">
+        <!-- Sidebar -->
+        <aside id="sidebar">
+            <nav>
+                <ul>
+                    <li><a href="/user-info">User Info</a></li>
+                    <li><a href="/data-visualization">Visualizations</a></li>
+                    <li><a href="/emergency">Emergency</a></li>
+                    <li><a href="/health-alerts">Health Alerts</a></li>
+                </ul>
+            </nav>
+            <section id="health-alerts">
+                <h4>From your Oxysmart team</h4>
+                <p>We are with you every step of the way, with love always, your Oxysmart team ❤️</p>
+            </section>
+            <section id="logout-section">
+                <button id="logout-button">Logout</button>
+            </section>
+        </aside>
+
+        <!-- Main Content -->
+        <div id="main-content">
+            <!-- Welcome Message -->
+            <section id="welcome-message">
+                <h2>Greetings from OxySmart, we're glad you're here!</h2>
+                <p>Let's get started with your hike. Check your checklist and get ready for a safe adventure!</p>
+            </section>
+
+            <!-- Hiking Checklist Section -->
+            <section id="hiking-checklist">
+                <h2>Your Hiking Checklist</h2>
+                <ul id="checklist">
+                    <li><input type="checkbox" id="first-aid" /> First Aid Kit</li>
+                    <li><input type="checkbox" id="flashlight" /> Flashlight</li>
+                    <li><input type="checkbox" id="water-bottle" /> Water Bottle</li>
+                    <li><input type="checkbox" id="map" /> Map</li>
+                    <li><input type="checkbox" id="snacks" /> Snacks</li>
+                </ul>
+                <button id="checklist-submit">Check my Items</button>
+            </section>
+
+            <!-- Did You Know? Section -->
+            <section id="did-you-know">
+                <h3>Did you know?</h3>
+                <p id="fact">Loading fun facts...</p>
+            </section>
+        </div>
+    </div>
+
+    <script src="../static/js/dashboard.js"></script>
+    <script src="../static/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OxySmart - Data Visualization</title>
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>OxySmart - Real-Time Data Visualization</h1>
+      <p>Monitor your steps and calories burned in real time.</p>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/data-visualization">Visualization</a></li>
+        <li><a href="/user-info">User Info</a></li>
+        <li><a href="/health-alerts">Health Alerts</a></li>
+        <li><a href="/history">History</a></li>
+        <li><a href="/emergency">Emergency</a></li>
+      </ul>
+    </nav>
+
+    <section id="monitor">
+      <h2>Real-Time Step and Calorie Monitor</h2>
+      <p>Steps: <span id="current-steps">0</span></p>
+      <p>Calories Burned: <span id="current-calories">0.00</span> kcal</p>
+    </section>
+
+    <section id="data-visualization">
+      <h2>Steps and Calories Over Time</h2>
+      <div id="steps-circle-container"></div>
+      <!-- Circular Graph -->
+
+      <div id="steps-bar">
+        <h3>Steps Bar Chart</h3>
+        <svg id="steps-bar-chart"></svg>
+      </div>
+
+      <div id="calories-bar">
+        <h3>Calories Bar Chart</h3>
+        <svg id="calories-bar-chart"></svg>
+      </div>
+    </section>
+
+    <script src="../static/js/visualization.js"></script>
+  </body>
+</html>

@@ -1,0 +1,138 @@
+/* General Styles */
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  background-color: #f0f8ff;
+  color: #333;
+}
+
+header {
+  background-color: #00796b;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  border-bottom: 4px solid #004d40;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+}
+
+header p {
+  font-size: 1.2rem;
+  margin-top: 5px;
+}
+
+/* Dashboard Layout */
+#dashboard-container {
+  display: flex;
+  height: calc(100vh - 88px); /* Subtract header height */
+}
+
+/* Sidebar */
+#sidebar {
+  width: 250px;
+  background-color: #004d40;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#sidebar nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+#sidebar nav ul li {
+  margin-bottom: 15px;
+}
+
+#sidebar nav ul li a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.2rem;
+  display: block;
+  padding: 10px;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+}
+
+#sidebar nav ul li a:hover {
+  background-color: #00796b;
+}
+
+#health-alerts {
+  margin-top: auto;
+  background-color: #00796b;
+  padding: 15px;
+  border-radius: 8px;
+  color: white;
+}
+
+#logout-section {
+  margin-top: 20px;
+}
+
+#logout-button {
+  width: 100%;
+  background-color: #ff5722;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#logout-button:hover {
+  background-color: #d84315;
+} 
+
+/* Main Content */
+#main-content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+#main-content section {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#main-content h2,
+#main-content h3 {
+  margin: 0 0 15px 0;
+}
+
+#hiking-checklist ul {
+  list-style: none;
+  padding: 0;
+}
+
+#hiking-checklist ul li {
+  margin-bottom: 10px;
+}
+
+#checklist-submit {
+  background-color: #00796b;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#checklist-submit:hover {
+  background-color: #004d40;
+}

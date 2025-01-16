@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up - OxySmart</title>
+    <link rel="stylesheet" href="../static/css/signup.css" />
+    <link rel="stylesheet" href="../static/css/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Create Your OxySmart Account</h1>
+      <p>Sign up to monitor your blood oxygen levels while hiking.</p>
+    </header>
+
+    <nav>
+      <ul id="public-nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="/login">Log In</a></li>
+      </ul>
+    </nav>
+
+    <section>
+      <form id="signup-form">
+        <div class="form-group">
+          <label for="name">Full Name:</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Enter your full name"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="age">Age (years):</label>
+          <input
+            type="number"
+            id="age"
+            name="age"
+            placeholder="Enter your age"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="height">Height (cm):</label>
+          <input
+            type="number"
+            id="height"
+            name="height"
+            placeholder="Enter your height in cm"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="weight">Weight (kg):</label>
+          <input
+            type="number"
+            id="weight"
+            name="weight"
+            placeholder="Enter your weight in kg"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email address"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Create a password"
+            required
+          />
+          <button type="button" class="toggle-password" id="toggle-password">
+            Show
+          </button>
+        </div>
+        <div class="form-group">
+          <label for="confirm-password">Confirm Password:</label>
+          <input
+            type="password"
+            id="confirm-password"
+            name="confirm-password"
+            placeholder="Confirm your password"
+            required
+          />
+          <button
+            type="button"
+            class="toggle-password"
+            id="toggle-confirm-password"
+          >
+            Show
+          </button>
+        </div>
+        <div class="form-group">
+          <label>
+            <input type="checkbox" id="terms-checkbox" required />
+            I agree to the
+            <a href="/terms" target="_blank">Terms and Conditions</a>.
+          </label>
+        </div>
+        <button type="submit" class="submit-btn">Sign Up</button>
+      </form>
+    </section>
+
+    <footer>
+      <p>Already have an account? <a href="/login">Login here</a></p>
+    </footer>
+
+    <script src="../static/js/signup.js"></script>
+  </body>
+</html>

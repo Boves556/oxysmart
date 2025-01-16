@@ -1,0 +1,117 @@
+/* General Styles */
+body {
+    background-color: #f0f8ff; /* Light blue background */
+    color: #333;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+header {
+    text-align: center;
+    background-color: #00796b;
+    color: white;
+    padding: 50px 20px;
+}
+
+h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 1.2em;
+}
+
+/* Navigation Bar */
+nav {
+    background-color: #004d40;
+    padding: 10px 0;
+}
+
+nav ul {
+    list-style: none;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+nav ul li {
+    margin: 0 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.2em;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: #ff9800;
+}
+
+/* Welcome Section */
+#welcome {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+#welcome h2 {
+    font-size: 2.5em;
+    color: #00796b;
+}
+
+#welcome p {
+    font-size: 1.2em;
+    margin-top: 20px;
+}
+
+#welcome .action-links {
+    margin-top: 40px;
+}
+
+#welcome a {
+    text-decoration: none;
+    color: #00796b;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+#welcome a:hover {
+    color: #ff9800;
+}
+
+/* Oxygen Level Styling */
+.alert-safe {
+    color: green;
+}
+
+.alert-warning {
+    color: orange;
+}
+
+.alert-danger {
+    color: red;
+}
+
+/* Data Visualization Adjustments */
+#chart-container {
+    width: 100%;
+    max-width: 700px; /* Maximum width for the chart container */
+    margin: 0 auto;
+    height: 400px; /* Fixed height */
+    overflow: hidden;
+}
+
+canvas {
+    width: 100% !important; /* Ensure the canvas fills the container */
+    height: 100% !important; /* Ensure the canvas scales proportionally */
+    display: block; /* Remove extra space below canvas */
+}
