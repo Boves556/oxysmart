@@ -1,102 +1,118 @@
 /* General Reset */
 body {
-    margin: 0;
-    font-family: 'Poppins', Arial, sans-serif;
-    color: #333;
-    background-color: #f0f8ff; /* Match the general background */
+  margin: 0;
+  font-family: "Poppins", Arial, sans-serif;
+  color: #333;
+  background-color: #f0f8ff; /* Match the general background */
 }
 
 /* Header Section */
 .header {
-    text-align: center;
-    padding: 2rem 1rem;
-    background-color: #004d40; /* Darker green for the header */
-    color: white;
+  text-align: center;
+  padding: 2rem 1rem;
+  background-color: #004d40; /* Darker green for the header */
+  color: white;
 }
 
 .header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .header p {
-    font-size: 1rem;
-    margin: 0;
+  font-size: 1rem;
+  margin: 0;
 }
 
 /* Login Section */
 #login {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
 }
 
 .login-container {
-    background: white;
-    padding: 2rem;
-    border-radius: 12px; /* Retain original border style */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-    text-align: center;
+  background: white;
+  padding: 2rem;
+  border-radius: 12px; /* Retain original border style */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
 }
 
 .login-container h2 {
-    font-size: 1.8rem;
-    color: #009688; /* Updated to match website theme */
-    margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  color: #009688; /* Updated to match website theme */
+  margin-bottom: 1.5rem;
 }
 
 /* Form Styling */
 #login-form .form-group {
-    margin-bottom: 1.5rem;
-    text-align: left;
+  margin-bottom: 1.5rem;
+  text-align: left;
 }
 
 #login-form label {
-    display: block;
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-    color: #009688; /* Updated to match website theme */
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: #009688; /* Updated to match website theme */
 }
 
 #login-form input {
-    width: 100%;
-    padding: 0.8rem;
-    font-size: 1rem;
-    border: 1px solid #009688; /* Updated to match website theme */
-    border-radius: 8px; /* Retain original border style */
-    transition: border-color 0.3s ease;
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border: 1px solid #009688; /* Updated to match website theme */
+  border-radius: 8px; /* Retain original border style */
+  transition: border-color 0.3s ease;
 }
 
 #login-form input:focus {
-    border-color: #004d40; /* Updated to match website theme */
-    outline: none;
+  border-color: #004d40; /* Updated to match website theme */
+  outline: none;
 }
 
 .login-button {
-    background: #009688; /* Updated to match website theme */
-    color: white;
-    font-size: 1rem;
-    padding: 0.8rem 1.2rem;
-    border: none;
-    border-radius: 8px; /* Retain original border style */
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  background: #009688; /* Updated to match website theme */
+  color: white;
+  font-size: 1rem;
+  padding: 0.8rem 1.2rem;
+  border: none;
+  border-radius: 8px; /* Retain original border style */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .login-button:hover {
-    background: #004d40; /* Updated to match website theme */
+  background: #004d40; /* Updated to match website theme */
 }
 
 /* Responsive Design */
 @media (max-width: 600px) {
-    .header h1 {
-        font-size: 2rem;
-    }
+  .header h1 {
+    font-size: 2rem;
+  }
 
-    .login-container {
-        padding: 1.5rem;
-    }
+  .login-container {
+    padding: 1.5rem;
+  }
+}
+
+/* Password Show Checkbox */
+.show-password {
+  margin-top: 0.5rem;
+  gap: 0; /* Adds space between checkbox and label */
+}
+
+.show-password input[type="checkbox"] {
+  accent-color: #009688; /* Customize checkbox color */
+}
+
+.show-password label {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 0; /* Reset any default margin */
 }

@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>OxySmart - Data Visualization</title>
     <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="../static/css/dashboard.css" />
+    <link rel="stylesheet" href="../static/css/visualizations.css" />
     <script src="https://d3js.org/d3.v7.min.js"></script>
   </head>
   <body>
@@ -13,39 +15,55 @@
       <p>Monitor your steps and calories burned in real time.</p>
     </header>
 
-    <nav>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/data-visualization">Visualization</a></li>
-        <li><a href="/user-info">User Info</a></li>
-        <li><a href="/health-alerts">Health Alerts</a></li>
-        <li><a href="/history">History</a></li>
-        <li><a href="/emergency">Emergency</a></li>
-      </ul>
-    </nav>
+    <div id="dashboard-container">
+      <aside id="sidebar">
+        <nav>
+          <ul>
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/emergency">Emergency</a></li>
+            <li><a href="/health-alerts">Health Alerts</a></li>
+            <li><a href="/user-info">User Info</a></li>
+          </ul>
+        </nav>
+        <section id="health-alerts">
+          <h4>From your Oxysmart team</h4>
+          <p>
+            We are with you every step of the way, with love always, your
+            Oxysmart team ❤️
+          </p>
+        </section>
+        <section id="logout-section">
+          <button id="logout-button">Logout</button>
+        </section>
+      </aside>
 
-    <section id="monitor">
-      <h2>Real-Time Step and Calorie Monitor</h2>
-      <p>Steps: <span id="current-steps">0</span></p>
-      <p>Calories Burned: <span id="current-calories">0.00</span> kcal</p>
-    </section>
+      <div id="main-content">
+        <section id="monitor">
+          <h2>Real-Time Step and Calorie Monitor</h2>
+          <p>Steps: <span id="current-steps">0</span></p>
+          <p>Calories Burned: <span id="current-calories">0.00</span> kcal</p>
+        </section>
 
-    <section id="data-visualization">
-      <h2>Steps and Calories Over Time</h2>
-      <div id="steps-circle-container"></div>
-      <!-- Circular Graph -->
+        <section id="data-visualization">
+          <h2>Steps and Calories Over time</h2>
+          <div id="steps-circle-container"></div>
 
-      <div id="steps-bar">
-        <h3>Steps Bar Chart</h3>
-        <svg id="steps-bar-chart"></svg>
+          <h3>Historic Data Visualizations</h3>
+          <div class="chart-section">
+            <div id="steps-bar" class="chart-container">
+              <h3>Steps History</h3>
+              <svg id="steps-bar-chart"></svg>
+            </div>
+            <div id="calories-bar" class="chart-container">
+              <h3>Calories History</h3>
+              <svg id="calories-bar-chart"></svg>
+            </div>
+          </div>
+        </section>
       </div>
-
-      <div id="calories-bar">
-        <h3>Calories Bar Chart</h3>
-        <svg id="calories-bar-chart"></svg>
-      </div>
-    </section>
+    </div>
 
     <script src="../static/js/visualization.js"></script>
+    <script src="../static/js/script.js"></script>
   </body>
 </html>

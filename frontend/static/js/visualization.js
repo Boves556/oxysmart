@@ -30,7 +30,9 @@ async function initializeUserData() {
     console.warn("User is not logged in.");
     return;
   }
+
   try {
+    // Fetch steps for the current day
     const stepsResponse = await fetch(`${API_URL}/steps/current-day`, {
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -43,6 +45,10 @@ async function initializeUserData() {
       const caloriesData = await caloriesResponse.json();
       previousSteps = stepsData.steps || 0;
       previousCalories = caloriesData.calories || 0;
+
+      // Update UI with initial values
+      stepsElement.textContent = previousSteps.toLocaleString();
+      caloriesElement.textContent = previousCalories.toFixed(2);
       console.log("Initialized user data:", {
         previousSteps,
         previousCalories,
@@ -55,6 +61,29 @@ async function initializeUserData() {
   }
 }
 
+// Fetch and populate bar chart data
+async function fetchBarChartData(endpoint, elementId, yAxisMax, yAxisStep) {
+  const token = localStorage.getItem("accessToken");
+  if (!token) return;
+
+  try {
+    const response = await fetch(`${API_URL}/${endpoint}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    if (!response.ok) throw new Error(`Failed to fetch data from ${endpoint}`);
+
+    const data = await response.json();
+    const transformedData = data.map((item) => ({
+      label: new Date(item.timestamp).toLocaleTimeString(),
+      value: item.value,
+    }));
+
+    drawBarChart(transformedData, elementId, yAxisMax, yAxisStep);
+  } catch (error) {
+    console.error(`Error fetching bar chart data for ${endpoint}:`, error);
+  }
+}
+
 // Function to update steps and calories on the page
 async function updateStepsAndCalories() {
   const token = localStorage.getItem("accessToken");
@@ -64,9 +93,7 @@ async function updateStepsAndCalories() {
   }
   try {
     const response = await fetch(`${API_URL}/data/steps-calories`, {
-      headers: {
-        Authorization: `Bearer ${token}`, // Add the Authorization header
-      },
+      headers: { Authorization: `Bearer ${token}` },
     });
 
     if (!response.ok)
@@ -144,9 +171,7 @@ async function fetchArduinoData() {
 
   try {
     const response = await fetch(`${API_URL}/api/v1/arduino/data`, {
-      headers: {
-        Authorization: `Bearer ${token}`, // Add the Authorization header
-      },
+      headers: { Authorization: `Bearer ${token}` },
     });
     if (!response.ok) throw new Error("Failed to fetch Arduino data.");
 
@@ -243,14 +268,15 @@ async function updateCircularGraph() {
 }
 
 // Draw a bar chart
-function drawBarChart(data, elementId) {
-  const width = 800;
-  const height = 400;
-  const margin = { top: 20, right: 30, bottom: 40, left: 50 };
+function drawBarChart(data, elementId, yAxisMax, yAxisStep) {
+  const width = 400; // Adjust for better spacing
+  const height = 300;
+  const margin = { top: 20, right: 30, bottom: 50, left: 50 };
 
   const svg = d3
     .select(`#${elementId}`)
-    .html("") // Clear previous chart
+    .html("") // Clear existing chart
+    .append("svg")
     .attr("width", width)
     .attr("height", height);
 
@@ -262,9 +288,21 @@ function drawBarChart(data, elementId) {
 
   const yScale = d3
     .scaleLinear()
-    .domain([0, d3.max(data, (d) => d.value)])
-    .nice()
+    .domain([0, yAxisMax])
     .range([height - margin.bottom, margin.top]);
+
+  const yTicks = d3.range(0, yAxisMax + yAxisStep, yAxisStep);
+
+  const tooltip = d3
+    .select("body")
+    .append("div")
+    .style("position", "absolute")
+    .style("background", "#fff")
+    .style("border", "1px solid #ddd")
+    .style("padding", "10px")
+    .style("border-radius", "5px")
+    .style("visibility", "hidden")
+    .style("z-index", "10");
 
   svg
     .append("g")
@@ -277,7 +315,7 @@ function drawBarChart(data, elementId) {
   svg
     .append("g")
     .attr("transform", `translate(${margin.left},0)`)
-    .call(d3.axisLeft(yScale));
+    .call(d3.axisLeft(yScale).tickValues(yTicks));
 
   svg
     .selectAll(".bar")
@@ -289,7 +327,20 @@ function drawBarChart(data, elementId) {
     .attr("y", (d) => yScale(d.value))
     .attr("width", xScale.bandwidth())
     .attr("height", (d) => height - margin.bottom - yScale(d.value))
-    .attr("fill", "#00f");
+    .attr("fill", "#00796b")
+    .on("mouseover", (event, d) => {
+      tooltip
+        .html(`Time: ${d.label}<br>Value: ${d.value}`)
+        .style("visibility", "visible");
+    })
+    .on("mousemove", (event) => {
+      tooltip
+        .style("top", `${event.pageY - 20}px`)
+        .style("left", `${event.pageX + 10}px`);
+    })
+    .on("mouseout", () => {
+      tooltip.style("visibility", "hidden");
+    });
 }
 
 // Initialize the visualizations
@@ -298,7 +349,13 @@ function initializeVisualizations() {
     console.warn("User is not logged in. Visualizations will not start.");
     return;
   }
+
   clearInterval(intervalId);
+
+  // Fetch data for steps and calories bar charts
+  fetchBarChartData("steps/data-history", "steps-bar-chart", 100, 10);
+  fetchBarChartData("calories/data-history", "calories-bar-chart", 5, 1);
+
   intervalId = setInterval(() => {
     fetchArduinoData(); // Update the monitor
     updateCircularGraph(); // Update the circular graph

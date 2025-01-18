@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Emergency - OxySmart</title>
     <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="../static/css/dashboard.css" />
   </head>
   <body>
     <header>
@@ -12,17 +13,41 @@
       <p>Press the button below to simulate an emergency alert.</p>
     </header>
 
-    <!-- Emergency Section -->
-    <section id="emergency">
-      <button id="emergency-btn">Call 112</button>
-      <div id="emergency-alert" class="modal hidden">
-        <p>
-          An alert has been sent to emergency services. Remain calm, help will
-          be with you shortly.
-        </p>
-        <button onclick="closeAlert()">Close</button>
-      </div>
-    </section>
+    <div id="dashboard-container">
+      <!-- Sidebar -->
+      <aside id="sidebar">
+        <nav>
+          <ul>
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/data-visualization">Visualizations</a></li>
+            <li><a href="/health-alerts">Health Alerts</a></li>
+            <li><a href="/user-info">User Info</a></li>
+          </ul>
+        </nav>
+        <section id="health-alerts">
+          <h4>From your Oxysmart team</h4>
+          <p>
+            We are with you every step of the way, with love always, your
+            Oxysmart team ❤️
+          </p>
+        </section>
+        <section id="logout-section">
+          <button id="logout-button">Logout</button>
+        </section>
+      </aside>
+
+      <!-- Emergency Section -->
+      <section id="emergency">
+        <button id="emergency-btn">Call 112</button>
+        <div id="emergency-alert" class="modal hidden">
+          <p>
+            An alert has been sent to emergency services. Remain calm, help will
+            be with you shortly.
+          </p>
+          <button onclick="closeAlert()">Close</button>
+        </div>
+      </section>
+    </div>
 
     <script src="../static/js/script.js"></script>
   </body>

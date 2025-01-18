@@ -30,3 +30,11 @@ document.getElementById("login-form").addEventListener("submit", async (e) => {
     alert("An error occurred. Please try again.");
   }
 });
+
+// Show password toggle functionality
+document
+  .getElementById("show-password")
+  .addEventListener("change", function () {
+    const passwordField = document.getElementById("password");
+    passwordField.type = this.checked ? "text" : "password";
+  });

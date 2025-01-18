@@ -5,7 +5,7 @@ MPU6050 mpu;
 
 int steps = 0; // Step counter
 float calories = 0; // Calories burned
-const float calories_per_step = 0.05; // Example conversion factor
+const float calories_per_step = 0.04; // Example conversion factor
 bool stepDetected = false;
 
 void setup() {

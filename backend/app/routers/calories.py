@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session
 from .. import models, schemas, database
 from ..utils.auth import get_current_user
 from datetime import datetime, date
+from sqlalchemy.sql import func
 
 router = APIRouter(prefix="/calories", tags=["Calories"])
 
@@ -41,3 +42,21 @@ def get_calories_for_today(
     if calorie_entry:
         return {"calories": calorie_entry.calories_burned}
     return {"calories": 0.0}
+
+@router.get("/data-history")
+def get_calories_history(
+    db: Session = Depends(database.get_db),
+    current_user: int = Depends(get_current_user),
+):
+    """Fetch calorie burn history grouped by minute."""
+    calorie_entries = (
+        db.query(
+            func.date_trunc('minute', models.Calories.timestamp).label("minute"),
+            func.sum(models.Calories.calories_burned).label("calories_burned"),
+        )
+        .filter(models.Calories.user_id == current_user)
+        .group_by(func.date_trunc('minute', models.Calories.timestamp))
+        .order_by("minute")
+        .all()
+    )
+    return [{"timestamp": entry.minute, "value": entry.calories_burned} for entry in calorie_entries]
