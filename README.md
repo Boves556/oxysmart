@@ -23,6 +23,10 @@ then run:
 after it loads, run 'exit' then run:
 
 ```
+pip install -r backend/requirements.txt
+```
+
+```
 chmod +x third_script.sh
 ```
 
