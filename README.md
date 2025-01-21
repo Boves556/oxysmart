@@ -29,56 +29,82 @@ then run:
 
 
 
-#Challenges we faced while using Shell Scripts in the Project on GitHub Codespaces:
+# Challenges we faced Using Shell Scripts in GitHub Codespaces
 
-After we had issues running our project on github codespaces with docker, we decided to create shell scripts that could easily run our code.
-**4.2.1 Objective
-**The primary goal of using shell scripts in this project was to automate the setup, configuration, and execution of the backend application just as docker would. This included:
-Setting up a Python virtual environment and installing dependencies.
-Installing and configuring PostgreSQL.
-Restoring a database dump.
-Running the backend application using uvicorn.
+## 4.2.1 Objective
+The primary goal of using shell scripts in this project was to automate the setup, configuration, and execution of the backend application, functioning as an alternative to Docker. This included:
 
-**4.2.2 Approach
-**We started with a single shell script designed to:
-Create and activate a Python virtual environment.
-Install dependencies from requirements.txt.
-Update system packages.
-Install PostgreSQL and start its service.
-Set up a PostgreSQL user and database.
-Configure PostgreSQL authentication methods.
-Restore a database dump from a file.
-Launch the backend server using uvicorn.
+- Setting up a Python virtual environment and installing dependencies.
+- Installing and configuring PostgreSQL.
+- Restoring a database dump.
+- Running the backend application using `uvicorn`.
 
-**4.2.3 Challenges Faced
-**Interactive Commands:
-The command sudo -i used to switch to the root user opened an interactive root shell.
-This caused the script to exit prematurely as Codespaces is not designed to handle such interactions seamlessly within a non-interactive shell script.
-Context Switching:
-When using sudo -u postgres psql, the shell script required executing SQL commands. Codespaces sometimes failed to recognize the context correctly due to the environment isolation, leading to authentication errors.
-Script Exit Issues:
-The sudo -i command exited into a new root shell, preventing subsequent commands from executing. This disrupted the flow of the script, requiring a manual restart.
-Error Logs:
-Errors such as "peer authentication failed" occurred due to PostgreSQL’s default authentication settings, which needed to be modified in pg_hba.conf.
-Configuration changes required a service restart (sudo service postgresql restart), which sometimes did not sync properly in the Codespaces environment.
-Backend Server Launch:
-The uvicorn server launch needed to happen after all the configurations and database setups. If earlier steps failed, the server could not start.
+## 4.2.2 Approach
+We implemented a shell script solution with the following functionalities:
 
-** 4.2.4 Solutions we tried Implementing
-**Splitting the Script:
-We divided the original shell script into three separate scripts:
-First Script: Handles Python virtual environment setup, dependency installation, system updates, and starting PostgreSQL.
-Second Script: Manages PostgreSQL user and database setup, authentication configuration, and database restoration.
-Third Script: Starts the backend server using uvicorn.
-Environment Isolation:
-Ensured that each script executed independently to avoid context switching issues.
-Error Handling:
-Added set -e to ensure the script stopped on any error, making debugging easier.
-Used echo statements to provide detailed logs for each step.
-Testing in Codespaces:
-After splitting the scripts, we tested them sequentially in Codespaces to ensure compatibility.
-Updated PostgreSQL authentication settings (pg_hba.conf) programmatically and restarted the service.
-However we still encountered some errors when we tried to login to our system using the user details on our dump file. Unfortunately, we did not have time to try and solve these errors before the submission of the project. We attached a picture of the errors we got below:
+1. **Python Environment Setup**:
+   - Created and activated a Python virtual environment.
+   - Installed dependencies from `requirements.txt`.
+
+2. **System Updates and PostgreSQL Installation**:
+   - Updated system packages.
+   - Installed PostgreSQL and started its service.
+
+3. **Database Configuration**:
+   - Set up a PostgreSQL user and database.
+   - Configured PostgreSQL authentication methods.
+   - Restored a database dump from a file.
+
+4. **Backend Application Launch**:
+   - Ran the backend server using `uvicorn`.
+
+## 4.2.3 Challenges Faced
+1. **Interactive Commands**:
+   - Using `sudo -i` opened an interactive root shell, causing the script to exit prematurely, as Codespaces does not handle such interactions seamlessly.
+
+2. **Context Switching**:
+   - Running commands like `sudo -u postgres psql` required executing SQL commands, but Codespaces occasionally failed to recognize the context correctly due to environment isolation, leading to authentication errors.
+
+3. **Script Exit Issues**:
+   - The `sudo -i` command exited into a new root shell, disrupting the script flow and requiring manual intervention.
+
+4. **Error Logs**:
+   - Errors such as "peer authentication failed" arose due to PostgreSQL's default authentication settings.
+   - Modifications to `pg_hba.conf` required a service restart (`sudo service postgresql restart`), which sometimes failed to sync properly within the Codespaces environment.
+
+5. **Backend Server Launch**:
+   - The `uvicorn` server could not launch if earlier steps failed, halting the project execution.
+
+## 4.2.4 Solutions Implemented
+### 1. Splitting the Script
+To address flow and context issues, we divided the original shell script into three parts:
+
+- **First Script**:
+  - Handles Python virtual environment setup, dependency installation, system updates, and starting PostgreSQL.
+- **Second Script**:
+  - Manages PostgreSQL user and database setup, authentication configuration, and database restoration.
+- **Third Script**:
+  - Starts the backend server using `uvicorn`.
+
+### 2. Environment Isolation
+Each script was designed to execute independently, avoiding context-switching issues.
+
+### 3. Error Handling
+- Added `set -e` to ensure the script stopped on encountering any error, simplifying debugging.
+- Used `echo` statements for detailed logging at each step.
+
+### 4. Testing in Codespaces
+- Sequentially tested each script in Codespaces for compatibility.
+- Programmatically updated PostgreSQL authentication settings (`pg_hba.conf`) and restarted the service.
+
+## 4.2.5 Remaining Issues
+Despite these efforts, errors persisted when logging into the system using user details from the database dump. Unfortunately, time constraints prevented further debugging of these issues before project submission.
+
+## 4.2.6 Conclusion
+While the implemented solutions improved the workflow and addressed many challenges, some issues remain unresolved. Future efforts could focus on resolving database authentication errors and further refining the scripts for seamless integration in Codespaces.
+
+---
+
 
 
 
