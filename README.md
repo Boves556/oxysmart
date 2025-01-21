@@ -1,3 +1,7 @@
+To log in:
+email: enechukwulucky@gmail.com
+password: Lucky123
+
 To run this on github codespaces:
 ```
 docker-compose up --build
