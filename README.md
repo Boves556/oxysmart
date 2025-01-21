@@ -1,3 +1,7 @@
+To log in:
+email: enechukwulucky@gmail.com
+password: Lucky123
+
 To run the code:
 ```
 chmod +x setup_and_run.sh
