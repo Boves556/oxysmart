@@ -1,18 +1,14 @@
-// Define the API URL for fetching data
 const API_URL = "http://127.0.0.1:8000";
 let intervalId;
 
-// Track previous values to avoid redundant logging
 let previousSteps = 0;
 let previousCalories = 0;
 
-// Function to check if a user is logged in
 function isUserLoggedIn() {
   const token = localStorage.getItem("accessToken");
   return !!token;
 }
 
-// Select elements
 const stepsElement = document.getElementById("current-steps");
 const caloriesElement = document.getElementById("current-calories");
 
@@ -32,7 +28,6 @@ async function initializeUserData() {
   }
 
   try {
-    // Fetch steps for the current day
     const stepsResponse = await fetch(`${API_URL}/steps/current-day`, {
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -46,7 +41,6 @@ async function initializeUserData() {
       previousSteps = stepsData.steps || 0;
       previousCalories = caloriesData.calories || 0;
 
-      // Update UI with initial values
       stepsElement.textContent = previousSteps.toLocaleString();
       caloriesElement.textContent = previousCalories.toFixed(2);
       console.log("Initialized user data:", {
@@ -61,7 +55,6 @@ async function initializeUserData() {
   }
 }
 
-// Fetch and populate bar chart data
 async function fetchBarChartData(endpoint, elementId, yAxisMax, yAxisStep) {
   const token = localStorage.getItem("accessToken");
   if (!token) return;
@@ -84,7 +77,6 @@ async function fetchBarChartData(endpoint, elementId, yAxisMax, yAxisStep) {
   }
 }
 
-// Function to update steps and calories on the page
 async function updateStepsAndCalories() {
   const token = localStorage.getItem("accessToken");
   if (!token) {
@@ -101,7 +93,6 @@ async function updateStepsAndCalories() {
 
     const { steps, calories } = await response.json();
 
-    // Update steps and calories on the page
     stepsElement.textContent = steps.toLocaleString();
     caloriesElement.textContent = calories.toFixed(2);
   } catch (error) {
@@ -161,7 +152,6 @@ async function sendCaloriesToBackend(calories) {
   }
 }
 
-// Fetch Arduino data and update the monitor
 async function fetchArduinoData() {
   const token = localStorage.getItem("accessToken");
   if (!token) {
@@ -180,7 +170,6 @@ async function fetchArduinoData() {
     document.getElementById("current-calories").innerText =
       data.calories.toFixed(2);
 
-    // Log only when steps or calories increase
     if (data.steps > previousSteps) {
       await sendStepsToBackend(data.steps);
       previousSteps = data.steps;
@@ -198,7 +187,6 @@ async function fetchArduinoData() {
 }
 
 let currentEndAngle = 0;
-// Update the circular graph for steps
 async function updateCircularGraph() {
   try {
     const response = await fetch(`${API_URL}/api/v1/arduino/data`);
@@ -209,7 +197,7 @@ async function updateCircularGraph() {
     const radius = 90;
     const svg = d3
       .select("#steps-circle-container")
-      .html("") // Clear previous graph
+      .html("")
       .append("svg")
       .attr("width", 200)
       .attr("height", 200)
@@ -267,15 +255,14 @@ async function updateCircularGraph() {
   }
 }
 
-// Draw a bar chart
 function drawBarChart(data, elementId, yAxisMax, yAxisStep) {
-  const width = 400; // Adjust for better spacing
+  const width = 400; 
   const height = 300;
   const margin = { top: 20, right: 30, bottom: 50, left: 50 };
 
   const svg = d3
     .select(`#${elementId}`)
-    .html("") // Clear existing chart
+    .html("")
     .append("svg")
     .attr("width", width)
     .attr("height", height);
@@ -343,7 +330,7 @@ function drawBarChart(data, elementId, yAxisMax, yAxisStep) {
     });
 }
 
-// Initialize the visualizations
+
 function initializeVisualizations() {
   if (!isUserLoggedIn()) {
     console.warn("User is not logged in. Visualizations will not start.");
@@ -357,9 +344,9 @@ function initializeVisualizations() {
   fetchBarChartData("calories/data-history", "calories-bar-chart", 5, 1);
 
   intervalId = setInterval(() => {
-    fetchArduinoData(); // Update the monitor
-    updateCircularGraph(); // Update the circular graph
-  }, 1000); // Poll every second
+    fetchArduinoData(); 
+    updateCircularGraph(); 
+  }, 1000); 
 }
 
 document.addEventListener("DOMContentLoaded", initializeVisualizations);

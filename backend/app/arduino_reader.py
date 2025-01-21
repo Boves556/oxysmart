@@ -3,7 +3,7 @@ import requests
 import time
 
 # Configure Arduino serial port
-SERIAL_PORT = "/dev/tty.usbmodem1101"  # Replace with your actual port
+SERIAL_PORT = "/dev/tty.usbmodem1101"  
 BAUD_RATE = 9600
 API_URL = "http://127.0.0.1:8000"  # Backend API URL
 

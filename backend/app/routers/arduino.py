@@ -4,7 +4,6 @@ from typing import Optional
 
 router = APIRouter(prefix="/arduino", tags=["Arduino"])
 
-# In-memory storage for real-time data
 arduino_data = {"steps": 0, "calories": 0.0}
 
 

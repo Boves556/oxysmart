@@ -8,7 +8,7 @@ router = APIRouter(prefix="/data", tags=["Data"])
 @router.get("/steps-calories")
 def get_steps_and_calories(
     db: Session = Depends(database.get_db),
-    current_user: int = Depends(get_current_user),  # Validate user
+    current_user: int = Depends(get_current_user),
 ):
     latest_steps = db.query(models.Steps).filter_by(user_id=current_user).order_by(models.Steps.timestamp.desc()).first()
     latest_calories = db.query(models.Calories).filter_by(user_id=current_user).order_by(models.Calories.timestamp.desc()).first()

@@ -59,4 +59,4 @@ def get_calories_history(
         .order_by("minute")
         .all()
     )
-    return [{"timestamp": entry.minute, "value": entry.calories_burned} for entry in calorie_entries]
+    return [{"timestamp": entry.minute, "calories burnt": entry.calories_burned} for entry in calorie_entries]

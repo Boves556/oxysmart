@@ -103,12 +103,11 @@ document.addEventListener("DOMContentLoaded", function () {
     { id: "snacks", name: "Snacks", checked: false },
   ];
 
-  // Populate the checklist using the predefined data
   populateChecklist(checklistData);
 
   function populateChecklist(checklistData) {
     const checklist = document.getElementById("checklist");
-    checklist.innerHTML = ""; // Clear existing items
+    checklist.innerHTML = "";
     checklistData.forEach((item) => {
       const li = document.createElement("li");
       li.innerHTML = `<input type="checkbox" id="${item.id}" ${
@@ -118,15 +117,13 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Handle logout
   const logoutButton = document.getElementById("logout-button");
   if (logoutButton) {
     logoutButton.addEventListener("click", function () {
-      localStorage.removeItem("userId"); // Clear user session
-      window.location.href = "/login"; // Redirect to login page
+      localStorage.removeItem("userId");
+      window.location.href = "/login";
     });
   }
 
-  // Initialize the dashboard
-  fetchFunFacts(); // Initialize fun facts
+  fetchFunFacts();
 });

@@ -58,5 +58,5 @@ def get_steps_history(
         .order_by("minute")
         .all()
     )
-    return [{"timestamp": entry.minute, "value": entry.step_count} for entry in step_entries]
+    return [{"timestamp": entry.minute, "steps": entry.step_count} for entry in step_entries]
 

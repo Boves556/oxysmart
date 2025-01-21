@@ -1,0 +1,54 @@
+services:
+  db:
+    image: postgres:12
+    container_name: postgres_db
+    env_file:
+      - .env # Correctly specify the env file
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+      - ./db_init:/docker-entrypoint-initdb.d
+    networks:
+      - backend
+
+  webapi_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: webapi_app
+    ports:
+      - "8000"
+    depends_on:
+      - db # Correctly refer to the db service
+    env_file:
+      - .env # Correctly specify the env file
+    volumes:
+      - ./backend/app:/app
+    expose:
+      - "8000" # Internal port only
+    networks:
+      - backend
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "80:80" # Map Nginx to localhost
+    volumes:
+      - ./frontend/templates:/usr/share/nginx/html/templates:ro
+      - ./frontend/static:/usr/share/nginx/html/static:ro
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+
+    depends_on:
+      - webapi_app # Correctly refer to the webapi_app service
+    networks:
+      - backend
+
+volumes:
+  pg_data:
+
+networks:
+  backend:
+    name: backend
+    driver: bridge
