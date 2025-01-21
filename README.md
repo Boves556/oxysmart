@@ -8,7 +8,7 @@ docker-compose up --build
 ```
 
 
-# Dockerization Challenges and Solutions
+# Dockerization Challenges
 
 ## 4.1.1 Steps Taken for Dockerization
 
