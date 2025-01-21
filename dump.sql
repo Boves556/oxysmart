@@ -1,0 +1,506 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 14.15 (Homebrew)
+-- Dumped by pg_dump version 14.15 (Homebrew)
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: alembic_version; Type: TABLE; Schema: public; Owner: oxysmart_user
+--
+
+CREATE TABLE public.alembic_version (
+    version_num character varying(32) NOT NULL
+);
+
+
+ALTER TABLE public.alembic_version OWNER TO oxysmart_user;
+
+--
+-- Name: calories; Type: TABLE; Schema: public; Owner: oxysmart_user
+--
+
+CREATE TABLE public.calories (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    calories_burned double precision NOT NULL,
+    "timestamp" timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.calories OWNER TO oxysmart_user;
+
+--
+-- Name: calories_id_seq; Type: SEQUENCE; Schema: public; Owner: oxysmart_user
+--
+
+CREATE SEQUENCE public.calories_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.calories_id_seq OWNER TO oxysmart_user;
+
+--
+-- Name: calories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: oxysmart_user
+--
+
+ALTER SEQUENCE public.calories_id_seq OWNED BY public.calories.id;
+
+
+--
+-- Name: steps; Type: TABLE; Schema: public; Owner: oxysmart_user
+--
+
+CREATE TABLE public.steps (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    step_count integer NOT NULL,
+    "timestamp" timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.steps OWNER TO oxysmart_user;
+
+--
+-- Name: steps_id_seq; Type: SEQUENCE; Schema: public; Owner: oxysmart_user
+--
+
+CREATE SEQUENCE public.steps_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.steps_id_seq OWNER TO oxysmart_user;
+
+--
+-- Name: steps_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: oxysmart_user
+--
+
+ALTER SEQUENCE public.steps_id_seq OWNED BY public.steps.id;
+
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: oxysmart_user
+--
+
+CREATE TABLE public.users (
+    id integer NOT NULL,
+    name character varying NOT NULL,
+    email character varying NOT NULL,
+    hashed_password character varying NOT NULL,
+    age integer NOT NULL,
+    height double precision NOT NULL,
+    weight double precision NOT NULL
+);
+
+
+ALTER TABLE public.users OWNER TO oxysmart_user;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: oxysmart_user
+--
+
+CREATE SEQUENCE public.users_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_id_seq OWNER TO oxysmart_user;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: oxysmart_user
+--
+
+ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
+
+
+--
+-- Name: calories id; Type: DEFAULT; Schema: public; Owner: oxysmart_user
+--
+
+ALTER TABLE ONLY public.calories ALTER COLUMN id SET DEFAULT nextval('public.calories_id_seq'::regclass);
+
+
+--
+-- Name: steps id; Type: DEFAULT; Schema: public; Owner: oxysmart_user
+--
+
+ALTER TABLE ONLY public.steps ALTER COLUMN id SET DEFAULT nextval('public.steps_id_seq'::regclass);
+
+
+--
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: oxysmart_user
+--
+
+ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
+
+
+--
+-- Data for Name: alembic_version; Type: TABLE DATA; Schema: public; Owner: oxysmart_user
+--
+
+COPY public.alembic_version (version_num) FROM stdin;
+d6250827cc68
+\.
+
+
+--
+-- Data for Name: calories; Type: TABLE DATA; Schema: public; Owner: oxysmart_user
+--
+
+COPY public.calories (id, user_id, calories_burned, "timestamp") FROM stdin;
+443	4	0.05	2025-01-18 07:04:32.808381+01
+444	4	0.15	2025-01-18 07:04:33.805453+01
+445	4	0.2	2025-01-18 07:04:34.807802+01
+446	4	0.25	2025-01-18 07:04:35.804237+01
+447	4	0.3	2025-01-18 07:04:36.800444+01
+448	4	0.4	2025-01-18 07:04:38.803755+01
+449	4	0.5	2025-01-18 07:04:39.805603+01
+450	4	0.6	2025-01-18 07:04:40.803175+01
+451	4	0.7	2025-01-18 07:04:41.80726+01
+452	4	0.75	2025-01-18 07:04:42.808831+01
+453	4	0.85	2025-01-18 07:04:43.80757+01
+454	4	0.95	2025-01-18 07:04:44.819601+01
+455	4	0.95	2025-01-18 07:04:51.28288+01
+456	4	1	2025-01-18 07:06:13.275988+01
+457	4	1.05	2025-01-18 07:06:15.285441+01
+458	4	1.15	2025-01-18 07:06:16.277249+01
+459	4	1.2	2025-01-18 07:06:18.273239+01
+460	4	1.2	2025-01-18 07:06:19.940383+01
+461	4	1.3	2025-01-18 07:07:24.938354+01
+462	4	1.4	2025-01-18 07:07:25.937373+01
+463	4	1.5	2025-01-18 07:07:26.938383+01
+464	4	1.6	2025-01-18 07:07:27.9398+01
+465	4	1.7	2025-01-18 07:07:28.938258+01
+466	4	1.8	2025-01-18 07:07:29.939684+01
+467	4	1.9	2025-01-18 07:07:30.937487+01
+468	4	2	2025-01-18 07:07:31.951808+01
+469	4	2.05	2025-01-18 07:07:32.94245+01
+470	4	2.05	2025-01-18 07:07:37.375771+01
+471	4	2.15	2025-01-18 07:10:39.377105+01
+472	4	2.2	2025-01-18 07:10:40.3777+01
+473	4	2.3	2025-01-18 07:10:41.378105+01
+474	4	2.4	2025-01-18 07:10:42.378001+01
+475	4	2.45	2025-01-18 07:10:43.370942+01
+476	4	2.55	2025-01-18 07:10:44.37105+01
+477	4	2.55	2025-01-18 07:10:46.266834+01
+478	4	2.55	2025-01-18 07:11:19.982098+01
+479	4	2.55	2025-01-18 07:12:54.835774+01
+480	4	2.55	2025-01-18 07:13:34.498109+01
+481	4	2.55	2025-01-18 07:13:44.90701+01
+482	4	2.55	2025-01-18 07:14:05.381131+01
+483	4	2.55	2025-01-18 07:14:23.455262+01
+484	4	2.55	2025-01-18 07:14:54.868075+01
+485	4	2.55	2025-01-18 07:17:46.546485+01
+486	4	2.55	2025-01-18 07:17:52.827633+01
+487	4	2.55	2025-01-18 07:17:57.662734+01
+488	4	2.55	2025-01-18 07:18:10.891018+01
+489	4	2.65	2025-01-18 07:18:40.897537+01
+490	4	2.75	2025-01-18 07:18:41.894304+01
+491	4	2.85	2025-01-18 07:18:43.894122+01
+492	4	2.9	2025-01-18 07:18:44.889521+01
+493	4	2.95	2025-01-18 07:18:45.893307+01
+494	4	3.05	2025-01-18 07:18:46.890205+01
+495	4	3.1	2025-01-18 07:18:47.889549+01
+496	4	3.2	2025-01-18 07:18:48.889313+01
+497	4	3.25	2025-01-18 07:18:49.888812+01
+498	4	3.3	2025-01-18 07:18:50.886398+01
+499	4	3.3	2025-01-18 07:18:55.742929+01
+500	4	3.3	2025-01-18 07:19:02.970401+01
+501	4	3.3	2025-01-18 07:23:52.104393+01
+502	4	0.05	2025-01-19 18:00:58.003182+01
+503	4	0.15	2025-01-19 18:00:58.991339+01
+504	4	0.2	2025-01-19 18:00:59.990162+01
+505	4	0.3	2025-01-19 18:01:00.987683+01
+506	4	0.35	2025-01-19 18:01:01.985096+01
+507	4	0.4	2025-01-19 18:01:03.996122+01
+508	4	0.5	2025-01-19 18:01:04.998989+01
+509	4	0.55	2025-01-19 18:01:06.994653+01
+510	4	0.6	2025-01-19 18:01:07.994423+01
+511	4	0.65	2025-01-19 18:01:08.997354+01
+512	4	0.7	2025-01-19 18:01:09.996431+01
+513	4	0.7	2025-01-19 18:01:15.249838+01
+514	4	0.7	2025-01-19 18:01:28.476648+01
+515	4	0.7	2025-01-19 18:01:30.453325+01
+516	4	0.75	2025-01-19 18:01:53.454056+01
+517	4	0.8	2025-01-19 18:01:57.460362+01
+518	4	0.9	2025-01-19 18:01:59.458517+01
+519	4	0.95	2025-01-19 18:02:00.46264+01
+520	4	1	2025-01-19 18:02:01.453886+01
+521	4	1.1	2025-01-19 18:02:02.454614+01
+522	4	1.15	2025-01-19 18:02:03.456335+01
+523	4	1.2	2025-01-19 18:02:04.451649+01
+524	4	1.25	2025-01-19 18:02:05.453701+01
+525	4	1.3	2025-01-19 18:02:06.453444+01
+526	4	1.3	2025-01-19 18:02:19.065123+01
+527	4	1.3	2025-01-19 18:02:20.918518+01
+528	4	1.3	2025-01-19 18:02:50.245907+01
+529	4	1.3	2025-01-19 18:09:50.962378+01
+530	4	1.3	2025-01-19 18:19:44.229073+01
+531	4	1.35	2025-01-19 18:20:03.226335+01
+532	4	1.45	2025-01-19 18:20:04.234986+01
+533	4	1.55	2025-01-19 18:20:05.23564+01
+534	4	1.6	2025-01-19 18:20:06.240496+01
+535	4	1.65	2025-01-19 18:20:19.227441+01
+536	4	1.7	2025-01-19 18:20:21.229279+01
+537	4	0.05	2025-01-20 09:37:49.467622+01
+538	4	0.15	2025-01-20 09:37:50.463505+01
+539	4	0.2	2025-01-20 09:37:51.465824+01
+540	4	0.25	2025-01-20 09:37:52.463727+01
+541	4	0.3	2025-01-20 09:37:54.470681+01
+542	4	0.35	2025-01-20 09:37:56.472027+01
+543	4	0.4	2025-01-20 09:38:33.46951+01
+544	4	0.45	2025-01-20 09:38:35.46649+01
+545	4	0.45	2025-01-20 09:42:14.503297+01
+546	4	0.45	2025-01-20 09:43:58.521865+01
+547	4	0.5	2025-01-20 09:48:37.525371+01
+548	4	0.6	2025-01-20 09:48:38.522866+01
+549	4	0.7	2025-01-20 09:48:39.523346+01
+550	4	0.75	2025-01-20 09:48:47.525929+01
+551	4	0.8	2025-01-20 09:48:48.527327+01
+552	4	0.85	2025-01-20 09:49:31.524865+01
+553	4	0.9	2025-01-20 09:49:34.517341+01
+\.
+
+
+--
+-- Data for Name: steps; Type: TABLE DATA; Schema: public; Owner: oxysmart_user
+--
+
+COPY public.steps (id, user_id, step_count, "timestamp") FROM stdin;
+444	4	1	2025-01-18 07:04:32.800343+01
+445	4	3	2025-01-18 07:04:33.800936+01
+446	4	4	2025-01-18 07:04:34.800179+01
+447	4	5	2025-01-18 07:04:35.800236+01
+448	4	6	2025-01-18 07:04:36.796708+01
+449	4	8	2025-01-18 07:04:38.799948+01
+450	4	10	2025-01-18 07:04:39.799831+01
+451	4	12	2025-01-18 07:04:40.799421+01
+452	4	14	2025-01-18 07:04:41.799793+01
+453	4	15	2025-01-18 07:04:42.801119+01
+454	4	17	2025-01-18 07:04:43.798486+01
+455	4	19	2025-01-18 07:04:44.808051+01
+456	4	19	2025-01-18 07:04:51.271732+01
+457	4	20	2025-01-18 07:06:13.267259+01
+458	4	21	2025-01-18 07:06:15.267756+01
+459	4	23	2025-01-18 07:06:16.268322+01
+460	4	24	2025-01-18 07:06:18.267353+01
+461	4	24	2025-01-18 07:06:19.93513+01
+462	4	26	2025-01-18 07:07:24.933654+01
+463	4	28	2025-01-18 07:07:25.932692+01
+464	4	30	2025-01-18 07:07:26.933326+01
+465	4	32	2025-01-18 07:07:27.933293+01
+466	4	34	2025-01-18 07:07:28.933692+01
+467	4	36	2025-01-18 07:07:29.932875+01
+468	4	38	2025-01-18 07:07:30.932806+01
+469	4	40	2025-01-18 07:07:31.936494+01
+470	4	41	2025-01-18 07:07:32.935815+01
+471	4	41	2025-01-18 07:07:37.367064+01
+472	4	43	2025-01-18 07:10:39.367499+01
+473	4	44	2025-01-18 07:10:40.366864+01
+474	4	46	2025-01-18 07:10:41.368963+01
+475	4	48	2025-01-18 07:10:42.367332+01
+476	4	49	2025-01-18 07:10:43.365257+01
+477	4	51	2025-01-18 07:10:44.364999+01
+478	4	51	2025-01-18 07:10:46.260681+01
+479	4	51	2025-01-18 07:11:19.972243+01
+480	4	51	2025-01-18 07:12:54.829831+01
+481	4	51	2025-01-18 07:13:34.488335+01
+482	4	51	2025-01-18 07:13:44.894206+01
+483	4	51	2025-01-18 07:14:05.371316+01
+484	4	51	2025-01-18 07:14:23.448017+01
+485	4	51	2025-01-18 07:14:54.858854+01
+486	4	51	2025-01-18 07:17:46.538633+01
+487	4	51	2025-01-18 07:17:52.816884+01
+488	4	51	2025-01-18 07:17:57.650999+01
+489	4	51	2025-01-18 07:18:10.88544+01
+490	4	53	2025-01-18 07:18:40.88637+01
+491	4	55	2025-01-18 07:18:41.885286+01
+492	4	57	2025-01-18 07:18:43.885128+01
+493	4	58	2025-01-18 07:18:44.883363+01
+494	4	59	2025-01-18 07:18:45.881789+01
+495	4	61	2025-01-18 07:18:46.882629+01
+496	4	62	2025-01-18 07:18:47.882379+01
+497	4	64	2025-01-18 07:18:48.884167+01
+498	4	65	2025-01-18 07:18:49.882405+01
+499	4	66	2025-01-18 07:18:50.882357+01
+500	4	66	2025-01-18 07:18:55.733735+01
+501	4	66	2025-01-18 07:19:02.964805+01
+502	4	66	2025-01-18 07:23:52.098335+01
+503	4	1	2025-01-19 18:00:57.98959+01
+504	4	3	2025-01-19 18:00:58.985523+01
+505	4	4	2025-01-19 18:00:59.985435+01
+506	4	6	2025-01-19 18:01:00.983319+01
+507	4	7	2025-01-19 18:01:01.981581+01
+508	4	8	2025-01-19 18:01:03.988053+01
+509	4	10	2025-01-19 18:01:04.988897+01
+510	4	11	2025-01-19 18:01:06.986627+01
+511	4	12	2025-01-19 18:01:07.985541+01
+512	4	13	2025-01-19 18:01:08.989345+01
+513	4	14	2025-01-19 18:01:09.987884+01
+514	4	14	2025-01-19 18:01:15.241268+01
+515	4	14	2025-01-19 18:01:28.471752+01
+516	4	14	2025-01-19 18:01:30.448535+01
+517	4	15	2025-01-19 18:01:53.448757+01
+518	4	16	2025-01-19 18:01:57.451352+01
+519	4	18	2025-01-19 18:01:59.450907+01
+520	4	19	2025-01-19 18:02:00.453695+01
+521	4	20	2025-01-19 18:02:01.44813+01
+522	4	22	2025-01-19 18:02:02.449302+01
+523	4	23	2025-01-19 18:02:03.451188+01
+524	4	24	2025-01-19 18:02:04.447447+01
+525	4	25	2025-01-19 18:02:05.449385+01
+526	4	26	2025-01-19 18:02:06.449588+01
+527	4	26	2025-01-19 18:02:19.059266+01
+528	4	26	2025-01-19 18:02:20.914311+01
+529	4	26	2025-01-19 18:02:50.240333+01
+530	4	26	2025-01-19 18:09:50.956338+01
+531	4	26	2025-01-19 18:19:44.224928+01
+532	4	27	2025-01-19 18:20:03.222193+01
+533	4	29	2025-01-19 18:20:04.226882+01
+534	4	31	2025-01-19 18:20:05.226766+01
+535	4	32	2025-01-19 18:20:06.229441+01
+536	4	33	2025-01-19 18:20:19.222931+01
+537	4	34	2025-01-19 18:20:21.224949+01
+538	4	1	2025-01-20 09:37:49.458976+01
+539	4	3	2025-01-20 09:37:50.45706+01
+540	4	4	2025-01-20 09:37:51.459503+01
+541	4	5	2025-01-20 09:37:52.458244+01
+542	4	6	2025-01-20 09:37:54.461017+01
+543	4	7	2025-01-20 09:37:56.462278+01
+544	4	8	2025-01-20 09:38:33.459318+01
+545	4	9	2025-01-20 09:38:35.458516+01
+546	4	9	2025-01-20 09:42:14.49658+01
+547	4	9	2025-01-20 09:43:58.516249+01
+548	4	10	2025-01-20 09:48:37.51336+01
+549	4	12	2025-01-20 09:48:38.515399+01
+550	4	14	2025-01-20 09:48:39.514723+01
+551	4	15	2025-01-20 09:48:47.516684+01
+552	4	16	2025-01-20 09:48:48.517102+01
+553	4	17	2025-01-20 09:49:31.514764+01
+554	4	18	2025-01-20 09:49:34.512653+01
+\.
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: oxysmart_user
+--
+
+COPY public.users (id, name, email, hashed_password, age, height, weight) FROM stdin;
+4	Lucky Enechukwu	enechukwulucky@gmail.com	$2b$12$w71bFI9/XRRBwCnW0GOnAeaGszIYTDsEy7lkepNA10Lv5UGa0QEdu	25	180	80
+\.
+
+
+--
+-- Name: calories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: oxysmart_user
+--
+
+SELECT pg_catalog.setval('public.calories_id_seq', 553, true);
+
+
+--
+-- Name: steps_id_seq; Type: SEQUENCE SET; Schema: public; Owner: oxysmart_user
+--
+
+SELECT pg_catalog.setval('public.steps_id_seq', 554, true);
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: oxysmart_user
+--
+
+SELECT pg_catalog.setval('public.users_id_seq', 4, true);
+
+
+--
+-- Name: alembic_version alembic_version_pkc; Type: CONSTRAINT; Schema: public; Owner: oxysmart_user
+--
+
+ALTER TABLE ONLY public.alembic_version
+    ADD CONSTRAINT alembic_version_pkc PRIMARY KEY (version_num);
+
+
+--
+-- Name: calories calories_pkey; Type: CONSTRAINT; Schema: public; Owner: oxysmart_user
+--
+
+ALTER TABLE ONLY public.calories
+    ADD CONSTRAINT calories_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: steps steps_pkey; Type: CONSTRAINT; Schema: public; Owner: oxysmart_user
+--
+
+ALTER TABLE ONLY public.steps
+    ADD CONSTRAINT steps_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: oxysmart_user
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: ix_calories_id; Type: INDEX; Schema: public; Owner: oxysmart_user
+--
+
+CREATE INDEX ix_calories_id ON public.calories USING btree (id);
+
+
+--
+-- Name: ix_steps_id; Type: INDEX; Schema: public; Owner: oxysmart_user
+--
+
+CREATE INDEX ix_steps_id ON public.steps USING btree (id);
+
+
+--
+-- Name: ix_users_email; Type: INDEX; Schema: public; Owner: oxysmart_user
+--
+
+CREATE UNIQUE INDEX ix_users_email ON public.users USING btree (email);
+
+
+--
+-- Name: ix_users_id; Type: INDEX; Schema: public; Owner: oxysmart_user
+--
+
+CREATE INDEX ix_users_id ON public.users USING btree (id);
+
+
+--
+-- PostgreSQL database dump complete
+--
+

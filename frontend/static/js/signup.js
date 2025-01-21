@@ -5,7 +5,6 @@ document.getElementById("signup-form").addEventListener("submit", async (e) => {
   const confirmPassword = document.getElementById("confirm-password").value;
   const termsCheckbox = document.getElementById("terms-checkbox").checked;
 
-  // Validate password strength
   if (!/[A-Z]/.test(password) || !/[\W_]/.test(password)) {
     alert(
       "Password must contain at least one uppercase letter and one special character."
@@ -13,19 +12,16 @@ document.getElementById("signup-form").addEventListener("submit", async (e) => {
     return;
   }
 
-  // Validate password match
   if (password !== confirmPassword) {
     alert("Passwords do not match. Please try again.");
     return;
   }
 
-  // Validate Terms and Conditions
   if (!termsCheckbox) {
     alert("You must agree to the Terms and Conditions to sign up.");
     return;
   }
 
-  // Collect user input
   const data = {
     name: document.getElementById("name").value || null,
     age: parseInt(document.getElementById("age").value, 10) || null,
@@ -35,7 +31,6 @@ document.getElementById("signup-form").addEventListener("submit", async (e) => {
     password,
   };
 
-  // Validate email format
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(data.email)) {
     alert("Please enter a valid email address.");
@@ -43,11 +38,10 @@ document.getElementById("signup-form").addEventListener("submit", async (e) => {
   }
 
   try {
-    // Send signup data to the backend
     const response = await fetch("http://127.0.0.1:8000/api/v1/users/signup", {
       method: "POST",
       headers: {
-        Accept: "application/json", // Ensure server returns JSON
+        Accept: "application/json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
@@ -66,7 +60,6 @@ document.getElementById("signup-form").addEventListener("submit", async (e) => {
   }
 });
 
-// Toggle password visibility
 document.getElementById("toggle-password").addEventListener("click", () => {
   const passwordInput = document.getElementById("password");
   const type = passwordInput.type === "password" ? "text" : "password";
@@ -75,7 +68,6 @@ document.getElementById("toggle-password").addEventListener("click", () => {
     type === "password" ? "Show" : "Hide";
 });
 
-// Toggle confirm password visibility
 document
   .getElementById("toggle-confirm-password")
   .addEventListener("click", () => {

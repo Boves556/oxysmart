@@ -1,5 +1,1 @@
-.env
-secret_key.py
-.vscode
-alembic
-venv
+__pycache__

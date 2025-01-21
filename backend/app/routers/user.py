@@ -94,7 +94,6 @@ def login(user: schemas.UserLogin, db: Session = Depends(database.get_db)):
             detail="Invalid email or password",
         )
 
-    # Generate a JWT token
     access_token = create_access_token(data={"sub": str(db_user.id)})
     logger.info("Login successful for email: %s", user.email)
 
