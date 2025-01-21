@@ -1,6 +1,6 @@
 To log in:
 email: enechukwulucky@gmail.com
-password: Lucky123
+password: Lucky123!
 
 To run this on github codespaces:
 ```
