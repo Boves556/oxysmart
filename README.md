@@ -29,7 +29,8 @@ then run:
 
 
 
-#Challenges we faced while using Shell Scripts in the Project on GitHub Codespaces:#
+#Challenges we faced while using Shell Scripts in the Project on GitHub Codespaces:
+
 After we had issues running our project on github codespaces with docker, we decided to create shell scripts that could easily run our code.
 **4.2.1 Objective
 **The primary goal of using shell scripts in this project was to automate the setup, configuration, and execution of the backend application just as docker would. This included:
